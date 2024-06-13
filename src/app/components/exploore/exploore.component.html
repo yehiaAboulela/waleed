@@ -1,0 +1,92 @@
+<div class="my-bg-light py-5">
+  <div class="container">
+    <header>
+      <div class="carousel-container shadow">
+        <div
+          class="carousel-wrapper"
+          [ngStyle]="{ transform: 'translateX(-' + currentSlide * 100 + '%)' }"
+        >
+          <div class="carousel-slide" *ngFor="let image of images">
+            <img [src]="image.src" alt="Carousel image" class="w-100" />
+            <h3 class="carousel-text">{{ image.text }}</h3>
+          </div>
+        </div>
+        <button class="carousel-control prev" (click)="prevSlide()">
+          &#10094;
+        </button>
+        <button class="carousel-control next" (click)="nextSlide()">
+          &#10095;
+        </button>
+      </div>
+    </header>
+
+    <section>
+      <h2 class="my-3">
+        Here you can explore units near to {{ unevirsety }} unevirsety
+      </h2>
+      <div class="filter">
+        <ul class="list-unstyled">
+          <li>
+            <div
+              class="dropdown"
+              (mouseenter)="toggleDropdown(true)"
+              (mouseleave)="toggleDropdown(false)"
+            >
+              <button class="dropdown-button">
+                {{ region }} <i class="fa-solid fa-angle-down"></i>
+              </button>
+              <div class="dropdown-content" [class.show]="isDropdownOpen">
+                <span (click)="regionFilter('A')">region A</span>
+                <span (click)="regionFilter('B')">region B</span>
+                <span (click)="regionFilter('C')">region C</span>
+              </div>
+            </div>
+          </li>
+          <li class="ms-4 d-flex align-items-center justify-content-between">
+            <label for="minPrice">MIN: </label>
+
+            <input
+              id="minPrice"
+              type="number"
+              class="form-control ms-2"
+              placeholder="minimum price"
+              [(ngModel)]="minPrice"
+            />
+          </li>
+          <li class="ms-2 d-flex align-items-center justify-content-between">
+            <label for="maxPrice">MAX: </label>
+            <input
+              id="maxPrice"
+              type="number"
+              class="form-control ms-2"
+              placeholder="maximum price"
+              [(ngModel)]="maxPrice"
+            />
+          </li>
+          <li>
+            <button class="btn btn-primary ms-3">Apply Filters</button>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="row g-4">
+          <div class="col-md-3" *ngFor="let unit of units">
+            <div class="card shadow-sm">
+              <img
+                style="height: 200px"
+                [src]="unit.src"
+                class="card-img-top w-100"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ unit.unevirsety }}</h5>
+                <p class="card-text">{{ unit.price }}EGP</p>
+                <a href="#" class="btn btn-primary">details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

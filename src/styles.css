@@ -1,0 +1,18 @@
+:root {
+  --main-orange: #ff5722;
+  --color-dark: #3c4146;
+  --color-darker: #24282b;
+  --color-light: #e6e6e6;
+}
+.bg-main {
+  background-color: var(--main-orange);
+}
+.my-bg-light {
+  background-color: var(--color-light);
+}
+.pointer {
+  cursor: pointer;
+}
+.form-control:focus {
+  box-shadow: none;
+}
