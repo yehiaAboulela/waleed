@@ -38,15 +38,23 @@ export class ExplooreComponent implements OnInit {
   units: Unit[] = [];
   ngOnInit(): void {
     this.startSlideShow();
-    this.unevirsety = this.ActivatedRoute.snapshot.params['name'];
-
-    this.UnitsService.getAll().subscribe({
-      next: (res: Unit[]) => {
-        console.log(res);
-        this.units = res.filter((cur) => cur.university !== 'null');
-      },
-      error: (err) => {
-        console.log(err);
+    this.ActivatedRoute.params.subscribe({
+      next: (data) => {
+        this.unevirsety = data['name'];
+        this.UnitsService.getAll().subscribe({
+          next: (res: Unit[]) => {
+            this.units = res.filter((cur) => cur.university !== 'null');
+            if (this.ActivatedRoute.snapshot.params['name'] !== 'all') {
+              this.units = res.filter(
+                (cur) =>
+                  cur.university.toLowerCase() == data['name'].toLowerCase()
+              );
+            }
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
       },
     });
   }

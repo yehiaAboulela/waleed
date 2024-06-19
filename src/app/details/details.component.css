@@ -69,3 +69,12 @@
   border: 1px solid;
   margin-top: 10px;
 }
+.rent-period {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rent-input {
+  width: 48%;
+}

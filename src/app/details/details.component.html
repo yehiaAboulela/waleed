@@ -13,12 +13,12 @@
           <p class="fw-bold">Region:</p>
           <span class="text-capitalize"> {{ unit.region }} </span>
         </div>
-        <div class="unit-list">
-          <p class="fw-bold">Address:</p>
+        <div class="mb-3">
+          <p class="fw-bold mb-0">Address:</p>
           <span class="text-capitalize"> {{ unit.address }} </span>
         </div>
-        <div class="unit-list">
-          <p class="fw-bold">Transportations:</p>
+        <div class="mb-3">
+          <p class="fw-bold mb-0">Transportations:</p>
           <span> {{ unit.transportations[0].address }} </span>
         </div>
         <hr />
@@ -72,6 +72,20 @@
     <div class="mb-3">
       <label for="date">Expiration date:</label>
       <input class="form-control" type="date" id="date" />
+    </div>
+    <hr />
+    <div class="mb-3">
+      <label for="from">Rent period:</label>
+      <div class="rent-period">
+        <div class="rent-input">
+          <label for="from">From</label>
+          <input class="form-control" type="date" id="from" />
+        </div>
+        <div class="rent-input">
+          <label for="to">To</label>
+          <input class="form-control" type="date" id="to" />
+        </div>
+      </div>
     </div>
     <div class="mb-3">
       <label for="mates"
