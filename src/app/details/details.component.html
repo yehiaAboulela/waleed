@@ -1,0 +1,105 @@
+<section class="my-5" *ngIf="unit.address">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Left side: Apartment details -->
+      <div class="col-md-6 border-end">
+        <h3>{{ unit.university }}</h3>
+        <hr />
+        <div class="unit-list">
+          <p class="fw-bold">Price:</p>
+          <span> {{ unit.price }} </span>
+        </div>
+        <div class="unit-list">
+          <p class="fw-bold">Region:</p>
+          <span class="text-capitalize"> {{ unit.region }} </span>
+        </div>
+        <div class="unit-list">
+          <p class="fw-bold">Address:</p>
+          <span class="text-capitalize"> {{ unit.address }} </span>
+        </div>
+        <div class="unit-list">
+          <p class="fw-bold">Transportations:</p>
+          <span> {{ unit.transportations[0].address }} </span>
+        </div>
+        <hr />
+        <div>
+          <p class="fw-bold mb-2">Details:</p>
+          <p class="text-black-50">
+            {{ unit.details }} Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Inventore quis quisquam quaerat itaque dolor
+            tempora ab illum rerum, deleniti beatae voluptas officiis? Sequi
+            magnam dicta consectetur molestiae odit culpa consequatur.
+          </p>
+        </div>
+
+        <button class="btn btn-primary mt-4" (click)="purchase = true">
+          Buy Now
+        </button>
+      </div>
+
+      <!-- Right side: Image sliders -->
+      <div class="col-md-6">
+        <div class="slider-parent">
+          <div class="side">
+            <div
+              *ngFor="let img of unit.images.slice(0, 5); index as index"
+              class="side-img"
+              (click)="curImg = index"
+            >
+              <img [src]="img.URL" alt="" />
+            </div>
+          </div>
+          <div class="main">
+            <img [src]="unit.images.slice(0, 5)[curImg].URL" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="purchase-form-parent" *ngIf="purchase">
+  <form class="purchase-form">
+    <i class="fa fa-xmark exit-btn" (click)="purchase = false"></i>
+    <div class="mb-3">
+      <label for="cardNumber">Card Number:</label>
+      <input class="form-control" type="text" id="cardNumber" />
+    </div>
+    <div class="mb-3">
+      <label for="cvv">CVV:</label>
+      <input class="form-control" type="text" id="cvv" />
+    </div>
+    <div class="mb-3">
+      <label for="date">Expiration date:</label>
+      <input class="form-control" type="date" id="date" />
+    </div>
+    <div class="mb-3">
+      <label for="mates"
+        >Room mates: <span class="text-black-50">Optional/Max 3</span></label
+      >
+      <input
+        class="form-control"
+        type="number"
+        id="mates"
+        [(ngModel)]="roomMates"
+        name="number"
+      />
+      <p *ngIf="roomMatesNotValid" class="text-black-50">
+        Maximum roomates capacity is 3
+      </p>
+    </div>
+    <hr />
+    <div class="unit-list">
+      <p class="fw-bold">Price:</p>
+      <p>{{ unit.price }}</p>
+    </div>
+    <button class="btn btn-primary" (click)="calcFinalPrice()">
+      Purchace Now
+    </button>
+    <div class="final-price" *ngIf="finalPriceTap">
+      <i class="fa fa-xmark exit-btn" (click)="finalPriceTap = false"></i>
+      <p>Your about to pay {{ finalPrice }} with {{ roomMates }} room mates</p>
+      <button class="btn btn-primary">Accept</button>
+    </div>
+  </form>
+</section>

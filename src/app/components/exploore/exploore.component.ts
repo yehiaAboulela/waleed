@@ -1,6 +1,8 @@
 import { UnitsService } from './../../shared/services/units.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { max } from 'rxjs';
+import { Unit } from 'src/app/shared/interfaces/unit';
 
 @Component({
   selector: 'app-exploore',
@@ -33,62 +35,20 @@ export class ExplooreComponent implements OnInit {
   region: string = 'Select Region';
   minPrice: number = 0;
   maxPrice: number = 999999;
-  units: any[] = [
-    {
-      src: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'cairo',
-      price: 999,
-    },
-    {
-      src: 'https://images.pexels.com/photos/813692/pexels-photo-813692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'helwaan',
-      price: 3000,
-    },
-    {
-      src: 'https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'ain shams',
-      price: 2000,
-    },
-    {
-      src: 'https://images.pexels.com/photos/1648838/pexels-photo-1648838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'cairo',
-      price: 1250,
-    },
-    {
-      src: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'cairo',
-      price: 999,
-    },
-    {
-      src: 'https://images.pexels.com/photos/813692/pexels-photo-813692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'helwaan',
-      price: 3000,
-    },
-    {
-      src: 'https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'ain shams',
-      price: 2000,
-    },
-    {
-      src: 'https://images.pexels.com/photos/1648838/pexels-photo-1648838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      unevirsety: 'cairo',
-      price: 1250,
-    },
-  ];
-
+  units: Unit[] = [];
   ngOnInit(): void {
     this.startSlideShow();
     this.unevirsety = this.ActivatedRoute.snapshot.params['name'];
 
-    /* this.UnitsService.getAllUnits().subscribe({
-      next: (res) => {
+    this.UnitsService.getAll().subscribe({
+      next: (res: Unit[]) => {
         console.log(res);
-        this.units = res;
+        this.units = res.filter((cur) => cur.university !== 'null');
       },
       error: (err) => {
         console.log(err);
       },
-    }); */
+    });
   }
   ngOnDestroy(): void {
     this.stopSlideShow();
@@ -127,5 +87,25 @@ export class ExplooreComponent implements OnInit {
     const region = this.region;
     const minPrice = this.minPrice;
     const maxPrice = this.maxPrice;
+    if (this.region !== 'Select Region') {
+      this.units = this.units.filter(
+        (cur) => cur.region.toLocaleLowerCase == region.toLocaleLowerCase
+      );
+    }
+    this.units = this.units.filter(
+      (cur) => Number(cur.price) > minPrice && Number(cur.price) < maxPrice
+    );
+    console.log(this.units);
+  }
+  resetFilters() {
+    this.UnitsService.getAll().subscribe({
+      next: (res: Unit[]) => {
+        console.log(res);
+        this.units = res.filter((cur) => cur.university !== 'null');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

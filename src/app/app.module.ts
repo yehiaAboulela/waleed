@@ -16,6 +16,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { BookComponent } from './components/book/book.component';
 import { AboutComponent } from './components/about/about.component';
 import { ExplooreComponent } from './components/exploore/exploore.component';
+import { DetailsComponent } from './details/details.component';
+import { FlickityModule } from 'ngx-flickity';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import { ExplooreComponent } from './components/exploore/exploore.component';
     BookComponent,
     AboutComponent,
     ExplooreComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,

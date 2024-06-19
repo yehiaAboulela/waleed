@@ -9,6 +9,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DetailsComponent } from './details/details.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'book', component: BookComponent },
       { path: 'explore/:name', component: ExplooreComponent },
+      { path: 'details/:id', component: DetailsComponent },
     ],
   },
 ];

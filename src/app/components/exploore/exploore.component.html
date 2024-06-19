@@ -64,24 +64,31 @@
             />
           </li>
           <li>
-            <button class="btn btn-primary ms-3">Apply Filters</button>
+            <button class="btn btn-primary ms-3" (click)="applyFilters()">
+              Apply Filters
+            </button>
+            <button class="btn btn-primary ms-3" (click)="resetFilters()">
+              Reset
+            </button>
           </li>
         </ul>
       </div>
 
       <div>
         <div class="row g-4">
-          <div class="col-md-3" *ngFor="let unit of units">
+          <div class="col-md-3" *ngFor="let unit of units; index as index">
             <div class="card shadow-sm">
               <img
                 style="height: 200px"
-                [src]="unit.src"
+                [src]="unit.images[0].URL"
                 class="card-img-top w-100"
               />
               <div class="card-body">
-                <h5 class="card-title">{{ unit.unevirsety }}</h5>
+                <h5 class="card-title">{{ unit.university }}</h5>
                 <p class="card-text">{{ unit.price }}EGP</p>
-                <a href="#" class="btn btn-primary">details</a>
+                <a class="btn btn-primary" [routerLink]="['/details', unit.id]"
+                  >details</a
+                >
               </div>
             </div>
           </div>

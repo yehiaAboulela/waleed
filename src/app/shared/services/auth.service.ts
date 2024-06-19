@@ -10,13 +10,13 @@ export class AuthService {
 
   signup(body: any): Observable<any> {
     return this._HttpClient.post(
-      `https://university-manager-test-latest.onrender.com/auth/signup`,
+      `https://university-manager-beta.onrender.com/auth/signup`,
       body
     );
   }
   login(body: any): Observable<any> {
     return this._HttpClient.post(
-      `https://university-manager-test-latest.onrender.com/auth/signin`,
+      `https://university-manager-beta.onrender.com/auth/signin`,
       body
     );
   }

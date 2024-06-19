@@ -1,0 +1,71 @@
+.slider-parent {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+.slider-parent .side {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+}
+.slider-parent .side .side-img {
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 1px;
+  border: 2px solid #eee;
+}
+.slider-parent .main {
+  width: 88%;
+  height: 600px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  overflow: hidden;
+}
+.slider-parent .main img,
+.slider-parent .side .side-img img {
+  width: 100%;
+}
+.unit-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.purchase-form-parent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.678);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.purchase-form {
+  padding: 40px 20px 20px 20px;
+  border-radius: 20px;
+  position: relative;
+  background-color: white;
+  min-width: 600px;
+}
+.exit-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.final-price {
+  position: relative;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(244, 230, 213);
+  border: 1px solid;
+  margin-top: 10px;
+}
