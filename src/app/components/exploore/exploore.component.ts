@@ -43,6 +43,7 @@ export class ExplooreComponent implements OnInit {
         this.unevirsety = data['name'];
         this.UnitsService.getAll().subscribe({
           next: (res: Unit[]) => {
+            console.log(res);
             this.units = res.filter((cur) => cur.university !== 'null');
             if (this.ActivatedRoute.snapshot.params['name'] !== 'all') {
               this.units = res.filter(

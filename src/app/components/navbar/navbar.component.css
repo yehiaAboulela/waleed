@@ -1,3 +1,7 @@
 nav {
   background-color: #cf461c;
 }
+.logo {
+  width: 120px;
+  mix-blend-mode: color-burn;
+}
