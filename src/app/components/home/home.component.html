@@ -3,8 +3,8 @@
   <div class="container">
     <div class="text-center text-white intro-text">
       <h1 class="h2">SAS</h1>
-      <h3 class="h1">Reserve Apartment near to your university</h3>
-      <a class="btn book">BOOK</a>
+      <h3 class="h1">Reserve An Apartment near to your university</h3>
+      <a [routerLink]="['/explore', 'all']" class="btn book">BOOK</a>
     </div>
   </div>
   <div class="container">
@@ -60,7 +60,9 @@
             comfortable, safe, and engaging living environment that fosters
             academic success and personal growth.
           </p>
-          <button class="btn btn-dark">BOOK NOW</button>
+          <button [routerLink]="['/explore', 'all']" class="btn btn-dark">
+            BOOK NOW
+          </button>
         </div>
       </div>
     </div>
@@ -71,14 +73,15 @@
         <div class="p-5">
           <h1 class="h3">Cairo Universty</h1>
           <p class="lead text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-            nostrum consequuntur eum quas suscipit eius quia, reprehenderit,
+            Cairo University is a major public university located in Giza,
+            Egypt. It is one of the oldest and most prestigious universities in
+            the country,
           </p>
           <a
             class="btn btn-dark"
             [routerLink]="['/explore', 'cairo university']"
           >
-            Exploore
+            Explore
           </a>
         </div>
       </div>
@@ -94,14 +97,15 @@
         <div class="p-5">
           <h1 class="h3">Ain Shams University</h1>
           <p class="lead text-muted">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-            nostrum consequuntur eum quas suscipit eius quia, reprehenderit,
+            Ain Shams University is one of the premier public universities in
+            Egypt, located in the capital city, Cairo. Established in 1950, it
+            is the third-oldest university in Egypt,
           </p>
           <a
             class="btn btn-dark"
             [routerLink]="['/explore', 'Ain Shams University']"
           >
-            Exploore
+            Explore
           </a>
         </div>
       </div>

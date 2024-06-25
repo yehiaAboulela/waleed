@@ -17,4 +17,10 @@ export class UnitsService {
       `https://university-manager-beta.onrender.com/department/${id}`
     );
   }
+  book(id: string, mail: string): Observable<any> {
+    return this.http.post(
+      `https://university-manager-beta.onrender.com/Book?departmentId=${id}&userMail=${mail}`,
+      ''
+    );
+  }
 }

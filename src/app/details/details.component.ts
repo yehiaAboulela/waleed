@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UnitsService } from '../shared/services/units.service';
 import { Unit } from '../shared/interfaces/unit';
+import { jwtDecode } from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
@@ -11,7 +13,8 @@ import { Unit } from '../shared/interfaces/unit';
 export class DetailsComponent implements OnInit {
   constructor(
     private ActivatedRoute: ActivatedRoute,
-    private UnitsService: UnitsService
+    private UnitsService: UnitsService,
+    private ToastrService: ToastrService
   ) {}
   unit: Unit = {} as Unit;
   curImg = 0;
@@ -20,6 +23,8 @@ export class DetailsComponent implements OnInit {
   finalPrice = 1;
   finalPriceTap = false;
   roomMatesNotValid = false;
+  userToken: string = localStorage.getItem('token') as string;
+  userData: any = jwtDecode(this.userToken);
   ngOnInit(): void {
     this.ActivatedRoute.params.subscribe({
       next: (data: any) => {
@@ -50,5 +55,21 @@ export class DetailsComponent implements OnInit {
     } else {
       this.roomMatesNotValid = true;
     }
+  }
+
+  addToOrders() {
+    console.log(123);
+    this.UnitsService.book(String(this.unit.id), this.userData.email).subscribe(
+      {
+        next: (res) => {
+          if (res === null) {
+            this.ToastrService.success('booked successfully');
+          }
+        },
+        error: (res) => {
+          this.ToastrService.error('somthing went wrong');
+        },
+      }
+    );
   }
 }

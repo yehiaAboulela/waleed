@@ -110,7 +110,7 @@
     <div class="final-price" *ngIf="finalPriceTap">
       <i class="fa fa-xmark exit-btn" (click)="finalPriceTap = false"></i>
       <p>Your about to pay {{ finalPrice }} with {{ roomMates }} room mates</p>
-      <button class="btn btn-primary">Accept</button>
+      <button class="btn btn-primary" (click)="addToOrders()">Accept</button>
     </div>
   </form>
 </section>
